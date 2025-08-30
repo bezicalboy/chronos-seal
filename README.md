@@ -1,6 +1,6 @@
-# Chronos Seal dApp
+# Chronos Seal vApp
 
-This repository contains a Proof of Concept (PoC) for the Chronos Seal dApp, demonstrating an off-chain SP1 Prover and an on-chain Sui Smart Contract for verifying file hashes. This PoC is intended for contribution to SoundnessLabs for testnet validation and further development.
+This repository contains a Proof of Concept (PoC) for the Chronos Seal vApp, demonstrating an off-chain SP1 Prover and an on-chain Sui Smart Contract for verifying file hashes. This PoC is intended for contribution to SoundnessLabs for testnet validation and further development.
 
 ## Project Overview
 
@@ -24,51 +24,23 @@ This dApp consists of two main components:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-repo/chronos-seal-prover.git # Replace with actual repo URL
+git clone https://github.com/bezicalboy/chronos-seal.git 
 cd chronos-seal-prover
 ```
 
-### Build the Prover
-
-The prover is a Rust project within the workspace. Its build process is automated.
-
-```bash
-cargo build --release -p script
-```
-
-### Build and Deploy the Sui Smart Contract
-
-Navigate to the contract directory and build the Move package:
-
-```bash
-cd chronos_seal_contract
-sui move build
-```
-
-To deploy the contract to the Sui Testnet:
-
-```bash
-sui client publish --gas-budget 100000000 chronos_seal_contract
-```
-
-Note the `Package ID` from the deployment output. You will need this later.
-
 ## How to Run the Prover
 
-1.  Create a file you wish to seal (e.g., `my_document.txt`).
+1.  Create a file you wish to seal (e.g., `test_file.txt`).
 2.  Run the prover from the project root, providing the path to your file:
 
 ```bash
-cargo run --release --bin script -- --file-path test_file.txt
+cd script
+cargo run --release --bin script -- --file-path ../test_file.txt
 ```
 
 This will generate a `proof.bin` file in the project root directory.
 
 ## Known Issues and Limitations
-
-### Proof Size
-
-The generated `proof.bin` file can be very large. When attempting to submit such large proofs to a server (e.g., a relayer service), you might encounter a "413 Payload Too Large" error. Reducing the proof size typically requires advanced Zero-Knowledge Proof (ZKP) techniques such as recursive proofs or proof aggregation. These techniques are beyond the scope of this Proof of Concept and would require significant architectural changes and cryptographic engineering.
 
 ### Client-Side Submitter
 
