@@ -31,7 +31,7 @@ cd chronos-seal-prover
 ## How to Run the Prover
 
 1.  Create a file you wish to seal (e.g., `test_file.txt`).
-2.  Run the prover from the project root, providing the path to your file:
+2.  Run the prover, providing the path to your file:
 
 ```bash
 cd script
